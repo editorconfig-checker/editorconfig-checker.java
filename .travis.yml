@@ -9,7 +9,7 @@ jdk:
     - oraclejdk8
 
 after_success:
-  - ./gradlew cobertura jacocoTestReport pitest coveralls
+  - ./gradlew cobertura pitest coveralls
 
 script:
     - gradle build
