@@ -63,7 +63,6 @@ public final class EOLValidator extends Validator {
             int r;
             while ((r = stream.read()) != -1) {
                 char c = (char) r;
-                System.out.println(c);
                 if (LINE_SEPARATORS.contains(c)) {
                     for (final char x :
                             this.eol.getEol().toCharArray()) {
