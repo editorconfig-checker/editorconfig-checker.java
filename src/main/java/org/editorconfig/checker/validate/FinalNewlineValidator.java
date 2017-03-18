@@ -40,7 +40,7 @@ import java.io.IOException;
  * @since 0.1
  * @version $Id$
  */
-public final class FinalNewlineValidator extends Validator {
+final class FinalNewlineValidator extends Validator {
 
     private final boolean newline;
     private final EndOfLine eol;
@@ -51,7 +51,7 @@ public final class FinalNewlineValidator extends Validator {
      * @param newline if there should or shouldn't be a final newline
      * @param eol end of line marker
      */
-    public FinalNewlineValidator(final File file, final boolean newline, final EndOfLine eol) {
+    FinalNewlineValidator(final File file, final boolean newline, final EndOfLine eol) {
         super(file);
         this.newline = newline;
         this.eol = eol;

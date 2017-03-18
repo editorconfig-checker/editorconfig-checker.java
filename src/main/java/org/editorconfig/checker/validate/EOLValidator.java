@@ -40,7 +40,7 @@ import java.io.IOException;
  * @since 0.1
  * @version $Id$
  */
-public final class EOLValidator extends Validator {
+final class EOLValidator extends Validator {
 
     private final EndOfLine eol;
 
@@ -49,7 +49,7 @@ public final class EOLValidator extends Validator {
      * @param file the file to validate
      * @param eol the end of line marker
      */
-    public EOLValidator(final File file, final EndOfLine eol) {
+    EOLValidator(final File file, final EndOfLine eol) {
         super(file);
         this.eol = eol;
     }

@@ -43,7 +43,7 @@ import java.util.Set;
  * @since 0.1
  * @version $Id$
  */
-public final class IndentValidator extends Validator {
+final class IndentValidator extends Validator {
     private static final Set<Character> INDENTS = new HashSet<>(
             Arrays.asList(
                     new Character[] {
@@ -61,7 +61,7 @@ public final class IndentValidator extends Validator {
      * @param indent the {@link IndentStyle}
      * @param indentSize the amount of indents
      */
-    public IndentValidator(final File file, final IndentStyle indent, final int indentSize) {
+    IndentValidator(final File file, final IndentStyle indent, final int indentSize) {
         super(file);
         this.indent = indent;
         this.indentSize = indentSize;

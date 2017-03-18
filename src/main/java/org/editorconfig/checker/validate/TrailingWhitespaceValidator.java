@@ -39,13 +39,13 @@ import java.util.Scanner;
  * @since 0.1
  * @version $Id$
  */
-public final class TrailingWhitespaceValidator extends Validator {
+final class TrailingWhitespaceValidator extends Validator {
 
     /**
      * Ctor.
      * @param file the file to validate
      */
-    public TrailingWhitespaceValidator(final File file) {
+    TrailingWhitespaceValidator(final File file) {
         super(file);
     }
 
