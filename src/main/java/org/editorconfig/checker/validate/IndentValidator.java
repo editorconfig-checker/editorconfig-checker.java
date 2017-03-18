@@ -97,7 +97,7 @@ final class IndentValidator extends Validator {
                     if (INDENTS.contains(c)) {
                         for (int idx = 0; idx < indentSize; idx++) {
                             if (c != this.indent.getIndent()) {
-                                LOG.warning("Wrong indentation in " + this.file.getName() + " in line " + line);
+//                                LOG.warning("Wrong indentation in " + this.file.getName() + " in line " + line);
                                 result = false;
                             }
                             c = (char) stream.read();

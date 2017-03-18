@@ -75,7 +75,7 @@ final class EOLValidator extends Validator {
                     for (final char x :
                             this.eol.getEol().toCharArray()) {
                         if (x != c) {
-                            LOG.warning("Wrong EOL in " + this.file.getName() + " in line " + line);
+//                            LOG.warning("Wrong EOL in " + this.file.getName() + " in line " + line);
                             result = false;
                         }
                         c = (char) stream.read();

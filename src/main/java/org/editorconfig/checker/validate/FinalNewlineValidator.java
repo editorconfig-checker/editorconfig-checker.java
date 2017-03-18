@@ -84,7 +84,7 @@ final class FinalNewlineValidator extends Validator {
                     : !hasNewline) {
                 return true;
             } else {
-                LOG.warning("No final newline in " + this.file.getName());
+//                LOG.warning("No final newline in " + this.file.getName());
                 return false;
             }
         }

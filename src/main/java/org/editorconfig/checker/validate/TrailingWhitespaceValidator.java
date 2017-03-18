@@ -68,7 +68,7 @@ final class TrailingWhitespaceValidator extends Validator {
                     if (line.endsWith(String.valueOf(
                             whitespace.getIndent()
                     ))) {
-                        LOG.warning("Trailing whitespace in " + this.file.getName() + " in line " + lineNo);
+//                        LOG.warning("Trailing whitespace in " + this.file.getName() + " in line " + lineNo);
                         result = false;
                     }
                 }
