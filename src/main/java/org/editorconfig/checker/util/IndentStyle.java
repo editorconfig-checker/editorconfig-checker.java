@@ -31,7 +31,43 @@ package org.editorconfig.checker.util;
  * @version $Id$
  */
 public enum IndentStyle {
-    SPACE, TAB, NONE;
+    /**
+     * Use spaces for indentation
+     */
+    SPACE(' '),
+    /**
+     * Use tabs for indentation
+     */
+    TAB('\t'),
+    /**
+     * No indentation style specified
+     */
+    NONE('\0');
+
+    private final char indent;
+
+    /**
+     * Ctor.
+     * @param indent
+     */
+    IndentStyle(final char indent) {
+        this.indent = indent;
+    }
+
+    /**
+     * Getter for the indent value
+     * @return
+     */
+    public char getIndent() {
+        return this.indent;
+    }
+
+    /**
+     * Get a {@link IndentStyle} object from a editorconfig setting string.
+     * This method is case insensitive
+     * @param value {@code space | tab} or rubbish
+     * @return the corresponding {@link IndentStyle} or {@link IndentStyle#NONE}
+     */
     public static IndentStyle fromString(final String value) {
         switch (value.toLowerCase()) {
             case "space":
@@ -39,7 +75,7 @@ public enum IndentStyle {
             case "tab":
                 return TAB;
             default:
-                    return NONE;
+                return NONE;
         }
     }
 }

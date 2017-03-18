@@ -35,6 +35,10 @@ import static org.junit.Assert.*;
  * @version $Id$
  */
 public final class EndOfLineTest {
+    /**
+     * Test method for {@link EndOfLine#fromString(String)}
+     * @throws Exception
+     */
     @Test
     public void fromString() throws Exception {
         assertEquals(EndOfLine.LF, EndOfLine.fromString("lF"));

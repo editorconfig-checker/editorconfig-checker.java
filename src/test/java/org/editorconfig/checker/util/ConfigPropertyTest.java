@@ -39,6 +39,10 @@ import static org.junit.Assert.*;
  * @version $Id$
  */
 public final class ConfigPropertyTest {
+    /**
+     * Test method for {@link ConfigProperty#fromString(String)}
+     * @throws Exception
+     */
     @Test
     public void fromString() throws Exception {
         assertEquals(ConfigProperty.CHARSET, ConfigProperty.fromString("charsEt"));

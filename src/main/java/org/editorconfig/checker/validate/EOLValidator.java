@@ -27,24 +27,25 @@ package org.editorconfig.checker.validate;
 import org.editorconfig.checker.util.EndOfLine;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
+ * End of line validator
+ *
+ * <p>Validates if the EOL markers in a file match the one defined in a {@code .editorconfig}
  * Created by Valentin Brandl on 18.03.17.
  * @author Valentin Brandl
  * @since 0.1
  * @version $Id$
  */
 public final class EOLValidator extends Validator {
-    private static final Set<Character> LINE_SEPARATORS = new HashSet<>(
-            Arrays.asList(
-                    new Character[] {'\n', '\r'}
-            )
-    );
 
     private final EndOfLine eol;
+
+    /**
+     * Ctor.
+     * @param file the file to validate
+     * @param eol the end of line marker
+     */
     public EOLValidator(final File file, final EndOfLine eol) {
         super(file);
         this.eol = eol;

@@ -35,6 +35,11 @@ import static org.junit.Assert.*;
  * @version $Id$
  */
 public final class CharsetTest {
+
+    /**
+     * Test method for {@link Charset#fromString(String)}
+     * @throws Exception
+     */
     @Test
     public void fromString() throws Exception {
         assertEquals(Charset.LATIN1, Charset.fromString("lAtIn1"));

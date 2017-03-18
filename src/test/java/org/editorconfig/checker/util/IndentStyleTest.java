@@ -35,6 +35,10 @@ import static org.junit.Assert.*;
  * @version $Id$
  */
 public final class IndentStyleTest {
+    /**
+     * Test method for {@link IndentStyle#fromString(String)}
+     * @throws Exception
+     */
     @Test
     public void fromString() throws Exception {
         assertEquals(IndentStyle.SPACE, IndentStyle.fromString("sPaCe"));

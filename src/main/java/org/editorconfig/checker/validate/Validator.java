@@ -26,6 +26,9 @@ package org.editorconfig.checker.validate;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Valentin Brandl on 18.03.17.
@@ -34,9 +37,27 @@ import java.io.IOException;
  * @version $Id$
  */
 public abstract class Validator {
+    /**
+     * Validates if a given file can be validated given the validators constraints
+     * @return {@code true} if the file could be validated, else {@code false}
+     * @throws IOException if an error occurs
+     */
     abstract boolean validate() throws IOException;
 
+    static final Set<Character> LINE_SEPARATORS = new HashSet<>(
+            Arrays.asList(
+                    new Character[] {
+                            '\n', '\r'
+                    }
+            )
+    );
+
     final File file;
+
+    /**
+     * Ctor.
+     * @param file the file to validate
+     */
     Validator(final File file) {
         this.file = file;
     }

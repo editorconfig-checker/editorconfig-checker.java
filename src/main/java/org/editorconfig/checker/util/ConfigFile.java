@@ -33,6 +33,7 @@ import java.io.IOException;
 import java.util.Iterator;
 
 /**
+ * Represents a {@code .editorconfig} file
  * Created by Valentin Brandl on 14.03.17.
  * @author Valentin Brandl
  * @since 0.1

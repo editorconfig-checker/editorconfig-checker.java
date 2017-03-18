@@ -31,17 +31,46 @@ package org.editorconfig.checker.util;
  * @version $Id$
  */
 public enum EndOfLine {
-    LF("\n"), CR("\r"), CRLF("\r\n"), NONE("");
+    /**
+     * Linefeed
+     */
+    LF("\n"),
+    /**
+     * Carriage return
+     */
+    CR("\r"),
+    /**
+     * Carriage return followed by linefeed
+     */
+    CRLF("\r\n"),
+    /**
+     * Dummy value
+     */
+    NONE("");
 
     private final String eol;
+
+    /**
+     * Ctor.
+     * @param eol end of line marker
+     */
     EndOfLine(final String eol) {
         this.eol = eol;
     }
 
+    /**
+     * Getter for the end of line marker
+     * @return
+     */
     public String getEol() {
         return this.eol;
     }
 
+    /**
+     * Returns the enum representing a given value. This method is case insensitive
+     * @param value the value to convert
+     * @return the corresponding {@link EndOfLine} or {@link EndOfLine#NONE}
+     */
     public static EndOfLine fromString(final String value) {
         switch(value.toLowerCase()) {
             case "lf":

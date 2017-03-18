@@ -31,7 +31,30 @@ package org.editorconfig.checker.util;
  * @version $Id$
  */
 public enum Charset {
-    LATIN1, UTF_8, UTF_8_BOM, UTF_16BE, UTF_16LE, NONE;
+    /**
+     * latin1
+     */
+    LATIN1,
+    /**
+     * utf-8
+     */
+    UTF_8,
+    /**
+     * utf-8-bom
+     */
+    UTF_8_BOM,
+    /**
+     * utf-16be
+     */
+    UTF_16BE,
+    /**
+     * utf-16le
+     */
+    UTF_16LE,
+    /**
+     * Dummy value
+     */
+    NONE;
 
     public static Charset fromString(final String value) {
         switch(value.toLowerCase()) {

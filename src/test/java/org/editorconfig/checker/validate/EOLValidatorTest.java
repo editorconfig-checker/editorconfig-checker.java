@@ -34,12 +34,17 @@ import static org.junit.Assert.*;
 
 /**
  * Created by Valentin Brandl on 18.03.17.
- *
  * @author Valentin Brandl
+ * @since 0.1
  * @version $Id$
  */
-public class EOLValidatorTest {
+public final class EOLValidatorTest {
     private File eolLf, eolCr, eolCrLf, eolMixed;
+
+    /**
+     * Set up test resources.
+     * @throws Exception if an error occurred
+     */
     @Before
     public void setUp() throws Exception {
         this.eolLf = new File(
@@ -64,6 +69,10 @@ public class EOLValidatorTest {
         );
     }
 
+    /**
+     * Test LF files.
+     * @throws Exception
+     */
     @Test
     public void validateLf() throws Exception {
         final Validator validator = new EOLValidator(
@@ -76,6 +85,10 @@ public class EOLValidatorTest {
         assertFalse(falseValidator.validate());
     }
 
+    /**
+     * Test CR files.
+     * @throws Exception
+     */
     @Test
     public void validateCr() throws Exception {
         final Validator validator = new EOLValidator(
@@ -84,6 +97,10 @@ public class EOLValidatorTest {
         assertTrue(validator.validate());
     }
 
+    /**
+     * Test CRLF files.
+     * @throws Exception
+     */
     @Test
     public void validateCrLf() throws Exception {
         final Validator validator = new EOLValidator(
@@ -98,6 +115,10 @@ public class EOLValidatorTest {
         assertFalse(test);
     }
 
+    /**
+     * Test mixed files.
+     * @throws Exception
+     */
     @Test
     public void validateMixed() throws Exception {
         final Validator validator = new EOLValidator(
