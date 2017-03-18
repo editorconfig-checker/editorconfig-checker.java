@@ -60,7 +60,6 @@ final class TrailingWhitespaceValidator extends Validator {
             int lineNo = 1;
             while(scanner.hasNextLine()) {
                 final String line = scanner.nextLine();
-                System.out.println(line);
                 for (final IndentStyle whitespace :
                         IndentStyle.values()) {
                     if (whitespace == IndentStyle.NONE) {
