@@ -66,7 +66,7 @@ public enum ConfigProperty {
     /**
      * Unknown or invalid property
      */
-    NONE(null);
+    NONE("");
 
     private final String value;
 
