@@ -30,12 +30,14 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- * Created by Valentin Brandl on 18.03.17.
+ * Test case for {@link ConfigSection}
  *
+ * Created by Valentin Brandl on 18.03.17.
  * @author Valentin Brandl
+ * @since 0.1
  * @version $Id$
  */
-public class ConfigSectionTest {
+public final class ConfigSectionTest {
 
     private ConfigSection section;
 
