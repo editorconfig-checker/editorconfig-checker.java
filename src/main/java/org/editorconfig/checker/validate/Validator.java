@@ -22,36 +22,22 @@
  * SOFTWARE.
  */
 
-package org.editorconfig.checker.util;
+package org.editorconfig.checker.validate;
+
+import java.io.File;
+import java.io.IOException;
 
 /**
- * Created by Valentin Brandl on 15.03.17.
+ * Created by Valentin Brandl on 18.03.17.
  * @author Valentin Brandl
  * @since 0.1
  * @version $Id$
  */
-public enum EndOfLine {
-    LF("\n"), CR("\r"), CRLF("\r\n"), NONE("");
+public abstract class Validator {
+    abstract boolean validate() throws IOException;
 
-    private final String eol;
-    EndOfLine(final String eol) {
-        this.eol = eol;
-    }
-
-    public String getEol() {
-        return this.eol;
-    }
-
-    public static EndOfLine fromString(final String value) {
-        switch(value.toLowerCase()) {
-            case "lf":
-                return LF;
-            case "cr":
-                return CR;
-            case "crlf":
-                return CRLF;
-            default:
-                return NONE;
-        }
+    final File file;
+    Validator(final File file) {
+        this.file = file;
     }
 }
