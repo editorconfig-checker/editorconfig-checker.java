@@ -38,7 +38,7 @@ import static org.junit.Assert.*;
  * @since 0.1
  * @version $Id$
  */
-public class TrailingWhitespaceValidatorTest {
+public final class TrailingWhitespaceValidatorTest {
 
     /**
      * Validation test
