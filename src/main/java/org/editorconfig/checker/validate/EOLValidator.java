@@ -26,7 +26,10 @@ package org.editorconfig.checker.validate;
 
 import org.editorconfig.checker.util.EndOfLine;
 
-import java.io.*;
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 
 /**
  * End of line validator
