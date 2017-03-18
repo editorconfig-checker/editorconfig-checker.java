@@ -33,6 +33,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.logging.Logger;
 
 /**
  * Indentation validator
@@ -51,6 +52,7 @@ final class IndentValidator extends Validator {
                     }
             )
     );
+    private static final Logger LOG = Logger.getLogger(IndentValidator.class.getName());
 
     private final IndentStyle indent;
     private final int indentSize;
@@ -77,7 +79,8 @@ final class IndentValidator extends Validator {
                         this.file
                 )
         )) {
-            int r;
+            boolean result = true;
+            int line = 1, r;
             while ((r = stream.read()) != -1) {
                 char c = (char) r;
                 if (LINE_SEPARATORS.contains(c)) {
@@ -87,20 +90,22 @@ final class IndentValidator extends Validator {
                             break;
                         }
                     }
+                    line++;
                     if (r == -1) {
                         break;
                     }
                     if (INDENTS.contains(c)) {
                         for (int idx = 0; idx < indentSize; idx++) {
                             if (c != this.indent.getIndent()) {
-                                return false;
+                                LOG.warning("Wrong indentation in " + this.file.getName() + " in line " + line);
+                                result = false;
                             }
                             c = (char) stream.read();
                         }
                     }
                 }
             }
+            return result;
         }
-        return true;
     }
 }

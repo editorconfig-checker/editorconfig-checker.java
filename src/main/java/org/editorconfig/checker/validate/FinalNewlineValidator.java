@@ -30,6 +30,7 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 /**
  * Final newline validator
@@ -41,6 +42,8 @@ import java.io.IOException;
  * @version $Id$
  */
 final class FinalNewlineValidator extends Validator {
+
+    private static final Logger LOG = Logger.getLogger(FinalNewlineValidator.class.getName());
 
     private final boolean newline;
     private final EndOfLine eol;
@@ -76,9 +79,14 @@ final class FinalNewlineValidator extends Validator {
             final boolean hasNewline = (this.eol == EndOfLine.NONE)
                     ? LINE_SEPARATORS.contains(end[1])
                     : new String(end).endsWith(this.eol.getEol());
-            return newline
+            if(newline
                     ? hasNewline
-                    : !hasNewline;
+                    : !hasNewline) {
+                return true;
+            } else {
+                LOG.warning("No final newline in " + this.file.getName());
+                return false;
+            }
         }
     }
 }

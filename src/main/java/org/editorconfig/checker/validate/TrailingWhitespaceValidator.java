@@ -29,6 +29,7 @@ import org.editorconfig.checker.util.IndentStyle;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
+import java.util.logging.Logger;
 
 /**
  * Trailing whitespace validator
@@ -40,6 +41,7 @@ import java.util.Scanner;
  * @version $Id$
  */
 final class TrailingWhitespaceValidator extends Validator {
+    private static final Logger LOG = Logger.getLogger(TrailingWhitespaceValidator.class.getName());
 
     /**
      * Ctor.
@@ -54,6 +56,8 @@ final class TrailingWhitespaceValidator extends Validator {
         try(final Scanner scanner = new Scanner(
                 this.file
         )) {
+            boolean result = true;
+            int lineNo = 1;
             while(scanner.hasNextLine()) {
                 final String line = scanner.nextLine();
                 System.out.println(line);
@@ -65,11 +69,13 @@ final class TrailingWhitespaceValidator extends Validator {
                     if (line.endsWith(String.valueOf(
                             whitespace.getIndent()
                     ))) {
-                        return false;
+                        LOG.warning("Trailing whitespace in " + this.file.getName() + " in line " + lineNo);
+                        result = false;
                     }
                 }
+                lineNo++;
             }
+            return result;
         }
-        return true;
     }
 }

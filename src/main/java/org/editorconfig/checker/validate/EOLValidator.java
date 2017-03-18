@@ -30,6 +30,7 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.logging.Logger;
 
 /**
  * End of line validator
@@ -41,6 +42,8 @@ import java.io.IOException;
  * @version $Id$
  */
 final class EOLValidator extends Validator {
+
+    private static final Logger LOG = Logger.getLogger(EOLValidator.class.getName());
 
     private final EndOfLine eol;
 
@@ -59,25 +62,28 @@ final class EOLValidator extends Validator {
         if (this.eol == EndOfLine.NONE) {
             return true;
         }
+        boolean result = true;
         try(final DataInputStream stream = new DataInputStream(
                 new FileInputStream(
                         this.file
                 )
         )) {
-            int r;
+            int line = 1, r;
             while ((r = stream.read()) != -1) {
                 char c = (char) r;
                 if (LINE_SEPARATORS.contains(c)) {
                     for (final char x :
                             this.eol.getEol().toCharArray()) {
                         if (x != c) {
-                            return false;
+                            LOG.warning("Wrong EOL in " + this.file.getName() + " in line " + line);
+                            result = false;
                         }
                         c = (char) stream.read();
                     }
+                    line++;
                 }
             }
         }
-        return true;
+        return result;
     }
 }
