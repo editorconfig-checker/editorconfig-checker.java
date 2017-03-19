@@ -46,3 +46,15 @@ jar {
         attributes 'Implementation-Version': version
     }
 }
+
+void prepare() {
+    File f = new File(".git/hooks/pre-commit")
+    if (!f.exists()) {
+        println "Linking pre-commit git hook"
+        java.nio.file.Files.createSymbolicLink(
+            f.toPath(),
+            new File("../../Build/GitHooks/pre-commit").toPath()
+        )
+    }
+}
+prepare()
