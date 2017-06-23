@@ -28,7 +28,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
 import org.ini4j.Ini;
-import org.ini4j.IniPreferences;
+// import org.ini4j.IniPreferences;
 import org.ini4j.Profile;
 
 /**
@@ -40,8 +40,8 @@ import org.ini4j.Profile;
  */
 public final class ConfigFile {
 
-    private final String projectDir;
-    private final IniPreferences prefs;
+    // private final String projectDir;
+    // private final IniPreferences prefs;
     private final Ini ini;
 
     /**
@@ -50,13 +50,13 @@ public final class ConfigFile {
      * @throws IOException If an error occurs
      */
     public ConfigFile(final String projectDir) throws IOException {
-        this.projectDir = projectDir;
+        // this.projectDir = projectDir;
         this.ini = new Ini(
                 new File(
                         projectDir + File.separator + ".editorconfig"
                 )
         );
-        this.prefs = new IniPreferences(ini);
+        // this.prefs = new IniPreferences(ini);
     }
 
     public void filteredStreams() {
