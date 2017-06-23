@@ -24,14 +24,13 @@
 
 package org.editorconfig.checker.file;
 
+import static org.junit.Assert.assertTrue;
+
+import java.io.File;
 import org.editorconfig.checker.exception.IndentValidationException;
 import org.editorconfig.checker.util.IndentStyle;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.io.File;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by Valentin Brandl on 26.03.17.
@@ -40,10 +39,13 @@ import static org.junit.Assert.*;
  * @version $Id$
  */
 public class IndentValidatedFileTest {
-    private File indent1Tab, indent2Tab, indent4Space, indentMisc;
+    private File indent1Tab;
+    private File indent2Tab;
+    private File indent4Space;
+    private File indentMisc;
 
     /**
-     * Sets up resource files
+     * Sets up resource files.
      * @throws Exception if an error occured
      */
     @Before
@@ -71,8 +73,8 @@ public class IndentValidatedFileTest {
     }
 
     /**
-     * Validate tab indented files
-     * @throws Exception
+     * Validate tab indented files.
+     * @throws Exception If the test fails
      */
     @Test
     public void validateTab() throws Exception {
@@ -126,8 +128,8 @@ public class IndentValidatedFileTest {
     }
 
     /**
-     * Validate space indented files
-     * @throws Exception
+     * Validate space indented files.
+     * @throws Exception If the test fails
      */
     @Test
     public void validateSpace() throws Exception {
@@ -142,8 +144,8 @@ public class IndentValidatedFileTest {
     }
 
     /**
-     * Validate misc indented files
-     * @throws Exception
+     * Validate misc indented files.
+     * @throws Exception If the test fails
      */
     @Test
     public void validateMisc() throws Exception {

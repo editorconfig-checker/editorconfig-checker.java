@@ -24,13 +24,9 @@
 
 package org.editorconfig.checker.util;
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Test;
-
-import javax.xml.datatype.Duration;
-import java.awt.*;
-import java.util.Map;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by Valentin Brandl on 15.03.17.
@@ -40,8 +36,8 @@ import static org.junit.Assert.*;
  */
 public final class ConfigPropertyTest {
     /**
-     * Test method for {@link ConfigProperty#fromString(String)}
-     * @throws Exception
+     * Test method for {@link ConfigProperty#fromString(String)}.
+     * @throws Exception If the test fails
      */
     @Test
     public void fromString() throws Exception {

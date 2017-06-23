@@ -24,14 +24,13 @@
 
 package org.editorconfig.checker.file;
 
+import static org.junit.Assert.assertTrue;
+
+import java.io.File;
 import org.editorconfig.checker.exception.EOLValidationException;
 import org.editorconfig.checker.util.EndOfLine;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.io.File;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by Valentin Brandl on 26.03.17.
@@ -40,7 +39,10 @@ import static org.junit.Assert.*;
  * @version $Id$
  */
 public final class EOLValidatedFileTest {
-    private File eolLf, eolCr, eolCrLf, eolMixed;
+    private File eolLf;
+    private File eolCr;
+    private File eolCrLf;
+    private File eolMixed;
 
     /**
      * Set up test resources.
@@ -72,7 +74,7 @@ public final class EOLValidatedFileTest {
 
     /**
      * Test LF files.
-     * @throws Exception
+     * @throws Exception If the test fails
      */
     @Test
     public void validateLf() throws Exception {
@@ -99,7 +101,7 @@ public final class EOLValidatedFileTest {
 
     /**
      * Test CR files.
-     * @throws Exception
+     * @throws Exception If the test fails
      */
     @Test
     public void validateCr() throws Exception {
@@ -114,7 +116,7 @@ public final class EOLValidatedFileTest {
 
     /**
      * Test CRLF files.
-     * @throws Exception
+     * @throws Exception If the test fails
      */
     @Test
     public void validateCrLf() throws Exception {
@@ -141,7 +143,7 @@ public final class EOLValidatedFileTest {
 
     /**
      * Test mixed files.
-     * @throws Exception
+     * @throws Exception If the test fails
      */
     @Test
     public void validateMixed() throws Exception {

@@ -24,15 +24,17 @@
 
 package org.editorconfig.checker.util;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Before;
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * Test case for {@link ConfigSection}
  *
- * Created by Valentin Brandl on 18.03.17.
+ * <p>Created by Valentin Brandl on 18.03.17.
  * @author Valentin Brandl
  * @since 0.1
  * @version $Id$
@@ -41,6 +43,10 @@ public final class ConfigSectionTest {
 
     private ConfigSection section;
 
+    /**
+     * Sets up the test environment.
+     * @throws Exception If the setup fails
+     */
     @Before
     public void setUp() throws Exception {
         section = new ConfigSection(

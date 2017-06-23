@@ -32,39 +32,39 @@ package org.editorconfig.checker.util;
  */
 public enum ConfigProperty {
     /**
-     * {@code indent_style} property
+     * {@code indent_style} property.
      */
     INDENT_STYLE("indent_style"),
     /**
-     * {@code indent_size} property
+     * {@code indent_size} property.
      */
     INDENT_SIZE("indent_size"),
     /**
-     * {@code tab_width} property
+     * {@code tab_width} property.
      */
     TAB_WIDTH("tab_width"),
     /**
-     * {@code end_of_line} property
+     * {@code end_of_line} property.
      */
     END_OF_LINE("end_of_line"),
     /**
-     * {@code charset} property
+     * {@code charset} property.
      */
     CHARSET("charset"),
     /**
-     * {@code trim_trailing_whitespace} property
+     * {@code trim_trailing_whitespace} property.
      */
     TRIM_TRAILING_WHITESPACE("trim_trailing_whitespace"),
     /**
-     * {@code insert_final_newline} property
+     * {@code insert_final_newline} property.
      */
     INSERT_FINAL_NEWLINE("insert_final_newline"),
     /**
-     * {@code max_line_length} property
+     * {@code max_line_length} property.
      */
     MAX_LINE_LENGTH("max_line_length"),
     /**
-     * Unknown or invalid property
+     * Unknown or invalid property.
      */
     NONE("");
 
@@ -84,7 +84,7 @@ public enum ConfigProperty {
      * @return the corresponding {@link ConfigProperty} or {@link ConfigProperty#NONE}
      */
     public static ConfigProperty fromString(final String value) {
-        for(final ConfigProperty cp : ConfigProperty.values()) {
+        for (final ConfigProperty cp : ConfigProperty.values()) {
             if (value.equalsIgnoreCase(cp.value)) {
                 return cp;
             }

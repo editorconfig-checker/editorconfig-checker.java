@@ -24,9 +24,9 @@
 
 package org.editorconfig.checker.util;
 
-import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
-import static org.junit.Assert.*;
+import org.junit.Test;
 
 /**
  * Created by Valentin Brandl on 15.03.17.
@@ -36,8 +36,8 @@ import static org.junit.Assert.*;
  */
 public final class EndOfLineTest {
     /**
-     * Test method for {@link EndOfLine#fromString(String)}
-     * @throws Exception
+     * Test method for {@link EndOfLine#fromString(String)}.
+     * @throws Exception If the test fails
      */
     @Test
     public void fromString() throws Exception {

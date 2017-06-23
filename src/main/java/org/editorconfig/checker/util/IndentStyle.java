@@ -32,15 +32,15 @@ package org.editorconfig.checker.util;
  */
 public enum IndentStyle {
     /**
-     * Use spaces for indentation
+     * Use spaces for indentation.
      */
     SPACE(' '),
     /**
-     * Use tabs for indentation
+     * Use tabs for indentation.
      */
     TAB('\t'),
     /**
-     * No indentation style specified
+     * No indentation style specified.
      */
     NONE('\0');
 
@@ -48,15 +48,15 @@ public enum IndentStyle {
 
     /**
      * Ctor.
-     * @param indent
+     * @param indent The indentation character
      */
     IndentStyle(final char indent) {
         this.indent = indent;
     }
 
     /**
-     * Getter for the indent value
-     * @return
+     * Getter for the indent value.
+     * @return The indentation character
      */
     public char getIndent() {
         return this.indent;

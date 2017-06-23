@@ -24,16 +24,15 @@
 
 package org.editorconfig.checker.file;
 
-import org.editorconfig.checker.exception.IndentValidationException;
-import org.editorconfig.checker.exception.ValidationException;
-import org.editorconfig.checker.util.IndentStyle;
-
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import org.editorconfig.checker.exception.IndentValidationException;
+import org.editorconfig.checker.exception.ValidationException;
+import org.editorconfig.checker.util.IndentStyle;
 
 /**
  * Created by Valentin Brandl on 26.03.17.
@@ -45,7 +44,7 @@ public final class IndentValidatedFile extends SourceFile {
     private static final Set<Character> INDENTS = new HashSet<>(
             Arrays.asList(
                     new Character[] {
-                            ' ', '\t'
+                        ' ', '\t'
                     }
             )
     );
@@ -54,6 +53,12 @@ public final class IndentValidatedFile extends SourceFile {
     private final IndentStyle indent;
     private final int indentSize;
 
+    /**
+     * Ctor.
+     * @param file The {@code SourceFile} that will be wrapped
+     * @param indent The indentation style
+     * @param indentSize The indentation size
+     */
     public IndentValidatedFile(final SourceFile file, final IndentStyle indent, final int indentSize) {
         this.file = file;
         this.indent = indent;
@@ -74,7 +79,8 @@ public final class IndentValidatedFile extends SourceFile {
         try (final DataInputStream stream = new DataInputStream(
                 this.getStream()
         )) {
-            int line = 1, r;
+            int line = 1;
+            int r;
             while ((r = stream.read()) != -1) {
                 char c = (char) r;
                 if (LINE_SEPARATORS.contains(c)) {
@@ -91,7 +97,6 @@ public final class IndentValidatedFile extends SourceFile {
                     if (INDENTS.contains(c)) {
                         for (int idx = 0; idx < indentSize; idx++) {
                             if (c != this.indent.getIndent()) {
-//                                LOG.warning("Wrong indentation in " + this.file.getName() + " in line " + line);
                                 throw new IndentValidationException(this.fileName(), line);
                             }
                             c = (char) stream.read();

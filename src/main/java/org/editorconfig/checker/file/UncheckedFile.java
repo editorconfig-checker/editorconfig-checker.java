@@ -24,12 +24,11 @@
 
 package org.editorconfig.checker.file;
 
-import org.editorconfig.checker.exception.ValidationException;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import org.editorconfig.checker.exception.ValidationException;
 
 /**
  * Created by Valentin Brandl on 26.03.17.

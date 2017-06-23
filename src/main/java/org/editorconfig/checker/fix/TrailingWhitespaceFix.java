@@ -24,13 +24,14 @@
 
 package org.editorconfig.checker.fix;
 
-import org.editorconfig.checker.file.SourceFile;
-
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.StandardCopyOption;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.Scanner;
 import java.util.regex.Pattern;
+import org.editorconfig.checker.file.SourceFile;
 
 /**
  * Created by Valentin Brandl on 23.06.17.
@@ -47,21 +48,22 @@ public final class TrailingWhitespaceFix implements EditorconfigFix {
     TrailingWhitespaceFix(final SourceFile file) {
         this.file = file;
     }
+
     @Override
     public File fix() throws IOException {
         final File temp = File.createTempFile(this.file.fileName(), ".tmp");
         temp.deleteOnExit();
         try (final Scanner scanner = new Scanner(this.file.getStream(), "UTF-8");
-             final BufferedWriter out = new BufferedWriter(
-                     new OutputStreamWriter(
-                             new FileOutputStream(
-                                     temp
-                             ),
-							 "UTF-8"
-                     )
-             )
-        ) {
-            while(scanner.hasNextLine()) {
+                final BufferedWriter out = new BufferedWriter(
+                    new OutputStreamWriter(
+                        new FileOutputStream(
+                            temp
+                            ),
+                        "UTF-8"
+                        )
+                    )
+            ) {
+            while (scanner.hasNextLine()) {
                 final String line = scanner.nextLine();
                 out.write(RTRIM.matcher(line).replaceAll(""));
                 out.newLine();

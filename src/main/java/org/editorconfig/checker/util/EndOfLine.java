@@ -32,19 +32,19 @@ package org.editorconfig.checker.util;
  */
 public enum EndOfLine {
     /**
-     * Linefeed
+     * Linefeed.
      */
     LF("\n"),
     /**
-     * Carriage return
+     * Carriage return.
      */
     CR("\r"),
     /**
-     * Carriage return followed by linefeed
+     * Carriage return followed by linefeed.
      */
     CRLF("\r\n"),
     /**
-     * Dummy value
+     * Dummy value.
      */
     NONE("");
 
@@ -59,8 +59,8 @@ public enum EndOfLine {
     }
 
     /**
-     * Getter for the end of line marker
-     * @return
+     * Getter for the end of line marker.
+     * @return The end of line value
      */
     public String getEol() {
         return this.eol;
@@ -72,7 +72,7 @@ public enum EndOfLine {
      * @return the corresponding {@link EndOfLine} or {@link EndOfLine#NONE}
      */
     public static EndOfLine fromString(final String value) {
-        switch(value.toLowerCase()) {
+        switch (value.toLowerCase()) {
             case "lf":
                 return LF;
             case "cr":
