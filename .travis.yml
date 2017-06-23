@@ -1,4 +1,3 @@
-dist: trusty
 language: java
 # Run build on a Trusty image. Precise images do not support OpenJDK 8
 # dist: trusty
