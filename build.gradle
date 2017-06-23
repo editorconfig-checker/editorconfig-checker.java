@@ -16,6 +16,7 @@ plugins {
 	id 'com.github.kt3k.coveralls' version '2.8.1'
 	id 'com.github.ben-manes.versions' version '0.15.0'
 	id 'nebula.lint' version '7.8.0'
+	id "com.github.johnrengelman.shadow" version "2.0.0"
 }
 
 pitest {
@@ -29,10 +30,15 @@ group 'org.editorconfig'
 version = '0.1.0'
 
 apply plugin: 'java'
+apply plugin: 'application'
 apply plugin: 'findbugs'
+apply plugin: 'checkstyle'
+apply plugin: 'pmd'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
+
+mainClassName = 'org.editorconfig.checker.Checker'
 
 repositories {
     jcenter()
@@ -50,6 +56,8 @@ dependencies {
     testRuntime 'org.slf4j:slf4j-log4j12:1.7.25'
     testRuntime 'log4j:log4j:1.2.17'
     compile 'org.ini4j:ini4j:0.5.4'
+	// compile 'commons-cli:commons-cli:1.4'
+	compile 'args4j:args4j:2.33'
 	testCompile 'junit:junit:4.12'
 }
 
@@ -59,8 +67,9 @@ build {
 
 jar {
     manifest {
-        attributes 'Implementation-Version': version
-		attributes 'Specification-Version': version
+        attributes 'Implementation-Version': version,
+					'Specification-Version': version,
+					'Main-Class': 'org.editorconfig.checker.Checker'
     }
 }
 
@@ -83,6 +92,18 @@ tasks.withType(FindBugs) {
 		xml.enabled false
 		html.enabled true
 	}
+}
+
+tasks.withType(Pmd) {
+	reports {
+		xml.enabled false
+		html.enabled true
+	}
+}
+
+checkstyle {
+	configFile rootProject.file('config/checkstyle/checkstyle.xml')
+	toolVersion = '7.8.1'
 }
 
 void prepare() {
