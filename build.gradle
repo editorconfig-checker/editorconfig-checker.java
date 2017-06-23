@@ -1,18 +1,21 @@
 buildscript {
     repositories {
-        mavenCentral()
+        jcenter()
+		mavenCentral()
         // The next repo is only needed while using SNAPSHOT versions
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     }
     dependencies {
-        classpath "net.saliman:gradle-cobertura-plugin:2.4.0"
+        classpath "net.saliman:gradle-cobertura-plugin:2.5.0"
     }
 }
 
 plugins {
-    id 'net.saliman.cobertura' version '2.4.0'
-    id "info.solidsoft.pitest" version '1.1.11'
-    id 'com.github.kt3k.coveralls' version '2.8.1'
+	id 'net.saliman.cobertura' version '2.5.0'
+	id "info.solidsoft.pitest" version '1.1.11'
+	id 'com.github.kt3k.coveralls' version '2.8.1'
+	id 'com.github.ben-manes.versions' version '0.15.0'
+	id 'nebula.lint' version '7.8.0'
 }
 
 pitest {
@@ -23,28 +26,53 @@ pitest {
 cobertura.coverageFormats = ['html', 'xml'] // coveralls plugin depends on xml format report
 
 group 'org.editorconfig'
-version '1.0-SNAPSHOT'
+version = '0.1.0'
 
 apply plugin: 'java'
 
 sourceCompatibility = 1.7
-version = 0.1
 
 repositories {
-    mavenCentral()
+    jcenter()
+	mavenCentral()
+}
+
+gradleLint {
+	// warn on these lints
+	rules = ['dependency-parentheses']
+	// fail the build on these lints
+	criticalRules = ['unused-dependency']
 }
 
 dependencies {
-    testRuntime "org.slf4j:slf4j-log4j12:1.7.25"
-    testRuntime "log4j:log4j:1.2.17"
+    testRuntime 'org.slf4j:slf4j-log4j12:1.7.25'
+    testRuntime 'log4j:log4j:1.2.17'
     compile 'org.ini4j:ini4j:0.5.4'
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+	testCompile 'junit:junit:4.12'
+}
+
+build {
+	dependsOn dependencyUpdates
 }
 
 jar {
     manifest {
         attributes 'Implementation-Version': version
     }
+}
+
+// ignore unstable versions
+dependencyUpdates.resolutionStrategy = {
+	componentSelection { rules ->
+		rules.all { ComponentSelection selection ->
+			boolean rejected = ['alpha', 'beta', 'rc', 'cr', 'm'].any { qualifier ->
+				selection.candidate.version ==~ /(?i).*[.-]${qualifier}[.\d-]*/
+			}
+			if (rejected) {
+				selection.reject('Release candidate')
+			}
+		}
+	}
 }
 
 void prepare() {
