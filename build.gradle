@@ -31,6 +31,7 @@ version = '0.1.0'
 apply plugin: 'java'
 
 sourceCompatibility = 1.7
+targetCompatibility = 1.7
 
 repositories {
     jcenter()
