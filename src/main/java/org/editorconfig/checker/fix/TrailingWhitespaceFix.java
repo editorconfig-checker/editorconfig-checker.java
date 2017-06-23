@@ -49,7 +49,7 @@ public final class TrailingWhitespaceFix implements EditorconfigFix {
     }
     @Override
     public File fix() throws IOException {
-        final File temp = File.createTempFile(this.file.fileName(), ".java");
+        final File temp = File.createTempFile(this.file.fileName(), ".tmp");
         temp.deleteOnExit();
         try (final Scanner scanner = new Scanner(this.file.getStream());
              final BufferedWriter out = new BufferedWriter(
@@ -58,7 +58,7 @@ public final class TrailingWhitespaceFix implements EditorconfigFix {
                                      temp
                              )
                      )
-             );
+             )
         ) {
             while(scanner.hasNextLine()) {
                 final String line = scanner.nextLine();
