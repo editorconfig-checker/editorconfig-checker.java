@@ -24,10 +24,8 @@
 
 package org.editorconfig.checker.fix;
 
-import org.editorconfig.checker.exception.ValidationException;
 import org.editorconfig.checker.file.TrailingWsValidatedFile;
 import org.editorconfig.checker.file.UncheckedFile;
-import org.editorconfig.checker.validate.TrailingWhitespaceValidator;
 import org.junit.Test;
 
 import java.io.File;
