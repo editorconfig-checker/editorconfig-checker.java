@@ -54,7 +54,8 @@ final class TrailingWhitespaceValidator extends Validator {
     @Override
     boolean validate() throws IOException {
         try(final Scanner scanner = new Scanner(
-                this.file
+                this.file,
+				"UTF-8"
         )) {
             boolean result = true;
             int lineNo = 1;

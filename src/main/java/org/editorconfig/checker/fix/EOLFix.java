@@ -56,12 +56,13 @@ public final class EOLFix implements EditorconfigFix {
     public File fix() throws IOException {
         final File temp = File.createTempFile(this.file.fileName(), ".tmp");
         temp.deleteOnExit();
-        try (final Scanner scanner = new Scanner(this.file.getStream());
+        try (final Scanner scanner = new Scanner(this.file.getStream(), "UTF-8");
              final BufferedWriter out = new BufferedWriter(
                      new OutputStreamWriter(
                              new FileOutputStream(
                                      temp
-                             )
+                             ),
+							 "UTF-8"
                      )
              )
         ) {

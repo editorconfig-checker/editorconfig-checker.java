@@ -54,7 +54,8 @@ public final class TrailingWsValidatedFile extends SourceFile {
     public void validate() throws ValidationException, IOException {
         this.file.validate();
         try (final Scanner scanner = new Scanner(
-                this.getStream()
+                this.getStream(),
+				"UTF-8"
         )) {
             int lineNo = 1;
             while (scanner.hasNextLine()) {

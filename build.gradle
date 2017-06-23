@@ -29,6 +29,7 @@ group 'org.editorconfig'
 version = '0.1.0'
 
 apply plugin: 'java'
+apply plugin: 'findbugs'
 
 sourceCompatibility = 1.7
 targetCompatibility = 1.7
@@ -59,6 +60,7 @@ build {
 jar {
     manifest {
         attributes 'Implementation-Version': version
+		attributes 'Specification-Version': version
     }
 }
 
@@ -73,6 +75,13 @@ dependencyUpdates.resolutionStrategy = {
 				selection.reject('Release candidate')
 			}
 		}
+	}
+}
+
+tasks.withType(FindBugs) {
+	reports {
+		xml.enabled false
+		html.enabled true
 	}
 }
 
