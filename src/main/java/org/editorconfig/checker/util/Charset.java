@@ -32,32 +32,37 @@ package org.editorconfig.checker.util;
  */
 public enum Charset {
     /**
-     * latin1
+     * latin1.
      */
     LATIN1,
     /**
-     * utf-8
+     * utf-8.
      */
     UTF_8,
     /**
-     * utf-8-bom
+     * utf-8-bom.
      */
     UTF_8_BOM,
     /**
-     * utf-16be
+     * utf-16be.
      */
     UTF_16BE,
     /**
-     * utf-16le
+     * utf-16le.
      */
     UTF_16LE,
     /**
-     * Dummy value
+     * Dummy value.
      */
     NONE;
 
+    /**
+     * Returns a corresponding {@code Charset}.
+     * @param value The value to parse
+     * @return The corresponding Charset or {@code Charset#NONE}
+     */
     public static Charset fromString(final String value) {
-        switch(value.toLowerCase()) {
+        switch (value.toLowerCase()) {
             case "latin1":
                 return LATIN1;
             case "utf-8":

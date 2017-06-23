@@ -24,14 +24,11 @@
 
 package org.editorconfig.checker.file;
 
+import java.io.File;
 import org.editorconfig.checker.exception.TrailingWsValidationException;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
-
-import java.io.File;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by Valentin Brandl on 23.06.17.

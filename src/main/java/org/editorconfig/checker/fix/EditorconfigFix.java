@@ -40,7 +40,7 @@ public interface EditorconfigFix {
      * Fixes a given {@link org.editorconfig.checker.file.SourceFile} and returns a temporary file that can be used
      * to replace the fixed file.
      *
-     * The temporary file will be deleted once the program exits
+     * <p>The temporary file will be deleted once the program exits
      * @return Fixed file
      * @throws IOException If reading, writing or creating the file fails
      */

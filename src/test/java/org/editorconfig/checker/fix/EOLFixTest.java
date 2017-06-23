@@ -24,14 +24,11 @@
 
 package org.editorconfig.checker.fix;
 
+import java.io.File;
 import org.editorconfig.checker.file.EOLValidatedFile;
 import org.editorconfig.checker.file.UncheckedFile;
 import org.editorconfig.checker.util.EndOfLine;
 import org.junit.Test;
-
-import java.io.File;
-
-import static org.junit.Assert.*;
 
 /**
  * Created by Valentin Brandl on 23.06.17.

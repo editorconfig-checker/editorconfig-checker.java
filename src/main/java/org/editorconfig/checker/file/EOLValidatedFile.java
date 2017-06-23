@@ -24,13 +24,12 @@
 
 package org.editorconfig.checker.file;
 
-import org.editorconfig.checker.exception.EOLValidationException;
-import org.editorconfig.checker.exception.ValidationException;
-import org.editorconfig.checker.util.EndOfLine;
-
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import org.editorconfig.checker.exception.EOLValidationException;
+import org.editorconfig.checker.exception.ValidationException;
+import org.editorconfig.checker.util.EndOfLine;
 
 /**
  * Created by Valentin Brandl on 26.03.17.
@@ -54,14 +53,14 @@ public final class EOLValidatedFile extends SourceFile {
         try (final DataInputStream stream = new DataInputStream(
                 this.getStream()
         )) {
-            int line = 1, r;
+            int line = 1;
+            int r;
             while ((r = stream.read()) != -1) {
                 char c = (char) r;
                 if (LINE_SEPARATORS.contains(c)) {
                     for (final char x :
                             this.eol.getEol().toCharArray()) {
                         if (x != c) {
-//                            LOG.warning("Wrong EOL in " + this.file.getName() + " in line " + line);
                             throw new EOLValidationException(this.fileName(), line);
                         }
                         c = (char) stream.read();

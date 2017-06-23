@@ -24,9 +24,9 @@
 
 package org.editorconfig.checker.util;
 
-import org.junit.Test;
-
 import java.io.File;
+
+import org.junit.Test;
 
 /**
  * Created by Valentin Brandl on 14.03.17.

@@ -24,13 +24,12 @@
 
 package org.editorconfig.checker.file;
 
-import org.editorconfig.checker.exception.TrailingWsValidationException;
-import org.editorconfig.checker.exception.ValidationException;
-import org.editorconfig.checker.util.IndentStyle;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Scanner;
+import org.editorconfig.checker.exception.TrailingWsValidationException;
+import org.editorconfig.checker.exception.ValidationException;
+import org.editorconfig.checker.util.IndentStyle;
 
 /**
  * Created by Valentin Brandl on 26.03.17.
@@ -41,6 +40,7 @@ import java.util.Scanner;
 public final class TrailingWsValidatedFile extends SourceFile {
 
     private final SourceFile file;
+
     public TrailingWsValidatedFile(final SourceFile file) {
         this.file = file;
     }
@@ -54,9 +54,9 @@ public final class TrailingWsValidatedFile extends SourceFile {
     public void validate() throws ValidationException, IOException {
         this.file.validate();
         try (final Scanner scanner = new Scanner(
-                this.getStream(),
-				"UTF-8"
-        )) {
+                    this.getStream(),
+                    "UTF-8"
+                    )) {
             int lineNo = 1;
             while (scanner.hasNextLine()) {
                 final String line = scanner.nextLine();
@@ -66,11 +66,10 @@ public final class TrailingWsValidatedFile extends SourceFile {
                         continue;
                     }
                     if (line.endsWith(
-                            String.valueOf(
+                                String.valueOf(
                                     whitespace.getIndent()
-                            )
-                    )) {
-//                        LOG.warning("Trailing whitespace in " + this.file.getName() + " in line " + lineNo);
+                                    )
+                                )) {
                         throw new TrailingWsValidationException(this.fileName(), lineNo);
                     }
                 }

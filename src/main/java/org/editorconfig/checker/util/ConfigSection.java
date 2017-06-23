@@ -40,7 +40,8 @@ public final class ConfigSection {
     private final int indentSize;
     private final EndOfLine eol;
     private final Charset charset;
-    private final boolean trimTrailingWhitespace, insertFinalNewline;
+    private final boolean trimTrailingWhitespace;
+    private final boolean insertFinalNewline;
 
     public String getWildcard() {
         return wildcard;
@@ -80,8 +81,9 @@ public final class ConfigSection {
      * @param trimTrailingWhitespace trimTrailingWhitespace
      * @param insertFinalNewline insertFinalNewline
      */
-    public ConfigSection(final String wildcard, final IndentStyle indentStyle, final int indentSize, final EndOfLine eol,
-                            final Charset charset, final boolean trimTrailingWhitespace, final boolean insertFinalNewline) {
+    public ConfigSection(final String wildcard, final IndentStyle indentStyle, final int indentSize,
+            final EndOfLine eol, final Charset charset, final boolean trimTrailingWhitespace,
+            final boolean insertFinalNewline) {
         this.wildcard = wildcard;
         this.indentStyle = indentStyle;
         this.indentSize = indentSize;

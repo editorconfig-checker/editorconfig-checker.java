@@ -24,13 +24,12 @@
 
 package org.editorconfig.checker.file;
 
-import org.editorconfig.checker.exception.ValidationException;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import org.editorconfig.checker.exception.ValidationException;
 
 /**
  * Created by Valentin Brandl on 26.03.17.
@@ -39,15 +38,17 @@ import java.util.Set;
  * @version $Id$
  */
 public abstract class SourceFile {
-   abstract public InputStream getStream() throws IOException;
-   abstract public void validate() throws ValidationException, IOException;
-   abstract public String fileName();
+    public abstract InputStream getStream() throws IOException;
 
-   static final Set<Character> LINE_SEPARATORS = new HashSet<>(
-           Arrays.asList(
-                   new Character[] {
-                           '\n', '\r'
-                   }
-           )
-   );
+    public abstract void validate() throws ValidationException, IOException;
+
+    public abstract String fileName();
+
+    static final Set<Character> LINE_SEPARATORS = new HashSet<>(
+            Arrays.asList(
+                new Character[] {
+                    '\n', '\r'
+                }
+            )
+    );
 }

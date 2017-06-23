@@ -24,11 +24,14 @@
 
 package org.editorconfig.checker.fix;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.util.Scanner;
 import org.editorconfig.checker.file.SourceFile;
 import org.editorconfig.checker.util.EndOfLine;
-
-import java.io.*;
-import java.util.Scanner;
 
 /**
  * Fixes end of line chars
@@ -44,8 +47,8 @@ public final class EOLFix implements EditorconfigFix {
 
     /**
      * Ctor.
-     * @param file
-     * @param eol
+     * @param file The file that will be fixed
+     * @param eol The end of line character
      */
     public EOLFix(final SourceFile file, final EndOfLine eol) {
         this.file = file;
@@ -57,16 +60,16 @@ public final class EOLFix implements EditorconfigFix {
         final File temp = File.createTempFile(this.file.fileName(), ".tmp");
         temp.deleteOnExit();
         try (final Scanner scanner = new Scanner(this.file.getStream(), "UTF-8");
-             final BufferedWriter out = new BufferedWriter(
-                     new OutputStreamWriter(
-                             new FileOutputStream(
-                                     temp
-                             ),
-							 "UTF-8"
-                     )
-             )
-        ) {
-            while(scanner.hasNextLine()) {
+                final BufferedWriter out = new BufferedWriter(
+                    new OutputStreamWriter(
+                        new FileOutputStream(
+                            temp
+                            ),
+                        "UTF-8"
+                        )
+                    )
+            ) {
+            while (scanner.hasNextLine()) {
                 final String line = scanner.nextLine();
                 out.write(line);
                 out.write(eol.getEol());
