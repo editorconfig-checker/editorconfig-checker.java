@@ -26,15 +26,23 @@ package org.editorconfig.checker.fix;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.OutputStream;
 
 /**
- * Created by Valentin Brandl on 23.06.17.
+ * Interface for fixers
  *
  * @author Valentin Brandl
  * @since 0.1.0
  * @version $Id$
  */
 public interface EditorconfigFix {
+
+    /**
+     * Fixes a given {@link org.editorconfig.checker.file.SourceFile} and returns a temporary file that can be used
+     * to replace the fixed file.
+     *
+     * The temporary file will be deleted once the program exits
+     * @return Fixed file
+     * @throws IOException If reading, writing or creating the file fails
+     */
     File fix() throws IOException;
 }
