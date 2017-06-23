@@ -59,8 +59,6 @@ public class TrailingWhitespaceFixTest {
                         fix
                 )
         ).validate();
-
-        fix.deleteOnExit();
     }
 
     @Test
@@ -82,7 +80,5 @@ public class TrailingWhitespaceFixTest {
                         fix
                 )
         ).validate();
-
-        fix.deleteOnExit();
     }
 }

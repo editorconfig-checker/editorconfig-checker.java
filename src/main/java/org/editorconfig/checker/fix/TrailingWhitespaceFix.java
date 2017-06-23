@@ -50,6 +50,7 @@ public final class TrailingWhitespaceFix implements EditorconfigFix {
     @Override
     public File fix() throws IOException {
         final File temp = File.createTempFile(this.file.fileName(), ".java");
+        temp.deleteOnExit();
         try (final Scanner scanner = new Scanner(this.file.getStream());
              final BufferedWriter out = new BufferedWriter(
                      new OutputStreamWriter(
