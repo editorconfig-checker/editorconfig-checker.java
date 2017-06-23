@@ -96,7 +96,7 @@ public final class EOLValidatedFileTest {
         } catch (EOLValidationException eve) {
             return;
         }
-        assertTrue(false);
+        throw new Exception();
     }
 
     /**
@@ -138,7 +138,7 @@ public final class EOLValidatedFileTest {
         } catch (EOLValidationException eve) {
             return;
         }
-        assertTrue(false);
+        throw new Exception();
     }
 
     /**
