@@ -1,3 +1,4 @@
+dist: trusty
 language: java
 # Run build on a Trusty image. Precise images do not support OpenJDK 8
 # dist: trusty
@@ -12,7 +13,7 @@ after_success:
   - ./gradlew cobertura pitest coveralls
 
 script:
-    - gradle build
+    - ./gradlew build
 
 cache:
   directories:
