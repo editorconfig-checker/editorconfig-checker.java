@@ -27,8 +27,11 @@ package org.editorconfig.checker.file;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.editorconfig.checker.exception.EOLValidationException;
-import org.editorconfig.checker.exception.ValidationException;
+import org.editorconfig.checker.exception.WrappedValidationException;
 import org.editorconfig.checker.util.EndOfLine;
 
 /**
@@ -48,11 +51,17 @@ public final class EOLValidatedFile extends SourceFile {
     }
 
     @Override
-    public void validate() throws ValidationException, IOException {
-        this.file.validate();
+    public void validate() throws WrappedValidationException, IOException {
+        final WrappedValidationException ex = new WrappedValidationException();
+        try {
+            this.file.validate();
+        } catch (final WrappedValidationException wve) {
+            ex.addExceptions(wve);
+        }
         try (final DataInputStream stream = new DataInputStream(
                 this.getStream()
         )) {
+            final List<Integer> lines = new ArrayList<>();
             int line = 1;
             int r;
             while ((r = stream.read()) != -1) {
@@ -61,13 +70,19 @@ public final class EOLValidatedFile extends SourceFile {
                     for (final char x :
                             this.eol.getEol().toCharArray()) {
                         if (x != c) {
-                            throw new EOLValidationException(this.fileName(), line);
+                            lines.add(line);
                         }
                         c = (char) stream.read();
                     }
                     line++;
                 }
             }
+            if (!lines.isEmpty()) {
+                ex.addExceptions(new EOLValidationException(this.fileName(), lines));
+            }
+        }
+        if (ex.hasExceptions()) {
+            throw ex;
         }
     }
 

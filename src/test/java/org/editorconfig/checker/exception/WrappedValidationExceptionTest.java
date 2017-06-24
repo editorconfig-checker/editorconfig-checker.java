@@ -24,26 +24,29 @@
 
 package org.editorconfig.checker.exception;
 
-import java.util.Collection;
-import java.util.stream.Collectors;
+import static org.junit.Assert.assertEquals;
+
+import java.util.Arrays;
+import java.util.StringJoiner;
+import org.junit.Test;
 
 /**
- * Created by Valentin Brandl on 26.03.17.
+ * Created by Valentin Brandl on 24.06.17.
+ *
  * @author Valentin Brandl
- * @since 0.1
  * @version $Id$
  */
-public final class EOLValidationException extends ValidationException {
-    /**
-     * Prepares an exception for invalid end of line chars.
-     * @param fileName The filename
-     * @param lines The lines in which errors were found
-     */
-    public EOLValidationException(final String fileName, final Collection<Integer> lines) {
-        super("Wrong EOL in " + fileName + " in lines "
-            + lines.stream()
-                .map(i -> i.toString())
-                .collect(Collectors.joining(", "))
+public class WrappedValidationExceptionTest {
+    @Test
+    public void getErrorMessage() throws Exception {
+        final ValidationException ve1 = new EOLValidationException("filename", Arrays.asList(1));
+        final ValidationException ve2 = new IndentValidationException("filename2", Arrays.asList(5));
+        final WrappedValidationException wve = new WrappedValidationException(ve1);
+        wve.addExceptions(ve2);
+        assertEquals(
+            new StringJoiner("\n").add(ve1.getMessage()).add(ve2.getMessage()).toString(),
+            wve.getErrorMessage()
         );
     }
+
 }

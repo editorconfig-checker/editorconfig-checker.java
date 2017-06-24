@@ -27,7 +27,7 @@ package org.editorconfig.checker.file;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
-import org.editorconfig.checker.exception.IndentValidationException;
+import org.editorconfig.checker.exception.WrappedValidationException;
 import org.editorconfig.checker.util.IndentStyle;
 import org.junit.Before;
 import org.junit.Test;
@@ -106,7 +106,7 @@ public class IndentValidatedFileTest {
         boolean ex = false;
         try {
             falseValidator.validate();
-        } catch (IndentValidationException ive) {
+        } catch (final WrappedValidationException ive) {
             ex = true;
         }
         assertTrue(ex);
@@ -121,7 +121,7 @@ public class IndentValidatedFileTest {
         ex = false;
         try {
             falseValidator2.validate();
-        } catch (IndentValidationException ive) {
+        } catch (final WrappedValidationException ive) {
             ex = true;
         }
         assertTrue(ex);
@@ -168,7 +168,7 @@ public class IndentValidatedFileTest {
         boolean ex = false;
         try {
             miscValidator2.validate();
-        } catch (IndentValidationException ive) {
+        } catch (final WrappedValidationException ive) {
             ex = true;
         }
         assertTrue(ex);

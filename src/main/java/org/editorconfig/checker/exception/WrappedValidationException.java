@@ -24,26 +24,46 @@
 
 package org.editorconfig.checker.exception;
 
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Created by Valentin Brandl on 26.03.17.
+ * Wrapper for ValidationExceptions to build an exception stack when checking a file.
+ *
  * @author Valentin Brandl
- * @since 0.1
  * @version $Id$
  */
-public final class EOLValidationException extends ValidationException {
-    /**
-     * Prepares an exception for invalid end of line chars.
-     * @param fileName The filename
-     * @param lines The lines in which errors were found
-     */
-    public EOLValidationException(final String fileName, final Collection<Integer> lines) {
-        super("Wrong EOL in " + fileName + " in lines "
-            + lines.stream()
-                .map(i -> i.toString())
-                .collect(Collectors.joining(", "))
-        );
+public final class WrappedValidationException extends Exception {
+
+    private final List<ValidationException> exceptions = new ArrayList<>();
+
+    public WrappedValidationException() {
+        super();
+    }
+
+    public WrappedValidationException(final ValidationException ve) {
+        this.exceptions.add(ve);
+    }
+
+    public WrappedValidationException(final WrappedValidationException wve) {
+        this.exceptions.addAll(wve.exceptions);
+    }
+
+    public boolean addExceptions(final ValidationException... ve) {
+        return this.exceptions.addAll(Arrays.asList(ve));
+    }
+
+    public boolean addExceptions(final WrappedValidationException wve) {
+        return this.exceptions.addAll(wve.exceptions);
+    }
+
+    public String getErrorMessage() {
+        return this.exceptions.stream().map(e -> e.getMessage()).collect(Collectors.joining("\n"));
+    }
+
+    public boolean hasExceptions() {
+        return !this.exceptions.isEmpty();
     }
 }

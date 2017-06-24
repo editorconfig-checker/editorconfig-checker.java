@@ -27,11 +27,14 @@ package org.editorconfig.checker.file;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
 import org.editorconfig.checker.exception.IndentValidationException;
-import org.editorconfig.checker.exception.ValidationException;
+import org.editorconfig.checker.exception.WrappedValidationException;
 import org.editorconfig.checker.util.IndentStyle;
 
 /**
@@ -71,14 +74,20 @@ public final class IndentValidatedFile extends SourceFile {
     }
 
     @Override
-    public void validate() throws ValidationException, IOException {
-        this.file.validate();
+    public void validate() throws WrappedValidationException, IOException {
+        final WrappedValidationException ex = new WrappedValidationException();
+        try {
+            this.file.validate();
+        } catch (final WrappedValidationException wve) {
+            ex.addExceptions(wve);
+        }
         if (this.indent == IndentStyle.NONE) {
             return;
         }
         try (final DataInputStream stream = new DataInputStream(
                 this.getStream()
         )) {
+            final List<Integer> lines = new ArrayList<>();
             int line = 1;
             int r;
             while ((r = stream.read()) != -1) {
@@ -97,13 +106,19 @@ public final class IndentValidatedFile extends SourceFile {
                     if (INDENTS.contains(c)) {
                         for (int idx = 0; idx < indentSize; idx++) {
                             if (c != this.indent.getIndent()) {
-                                throw new IndentValidationException(this.fileName(), line);
+                                lines.add(line);
                             }
                             c = (char) stream.read();
                         }
                     }
                 }
             }
+            if (!lines.isEmpty()) {
+                ex.addExceptions(new IndentValidationException(this.fileName(), lines));
+            }
+        }
+        if (ex.hasExceptions()) {
+            throw ex;
         }
     }
 

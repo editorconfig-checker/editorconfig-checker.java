@@ -24,6 +24,9 @@
 
 package org.editorconfig.checker.exception;
 
+import java.util.Collection;
+import java.util.stream.Collectors;
+
 /**
  * Created by Valentin Brandl on 26.03.17.
  * @author Valentin Brandl
@@ -31,7 +34,16 @@ package org.editorconfig.checker.exception;
  * @version $Id$
  */
 public final class TrailingWsValidationException extends ValidationException {
-    public TrailingWsValidationException(final String fileName, final int line) {
-        super("Trailing whitespace in " + fileName + " in line " + line);
+    /**
+     * Prepares an exception for illegal trailing whitespaces.
+     * @param fileName The file name
+     * @param lines The lines in which errors where found
+     */
+    public TrailingWsValidationException(final String fileName, final Collection<Integer> lines) {
+        super("Trailing whitespace in " + fileName + " in lines "
+            + lines.stream()
+                .map(i -> i.toString())
+                .collect(Collectors.joining(", "))
+        );
     }
 }
