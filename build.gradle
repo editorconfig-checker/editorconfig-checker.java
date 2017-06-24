@@ -23,7 +23,7 @@ plugins {
 
 pitest {
     timestampedReports = false
-    outputFormats = ['XML']
+    outputFormats = ['XML', 'html']
 }
 
 cobertura.coverageFormats = ['html', 'xml'] // coveralls plugin depends on xml format report

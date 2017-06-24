@@ -40,6 +40,12 @@ public final class UncheckedFile extends SourceFile {
 
     private final File file;
 
+    /**
+     * Wraps a {@link File} and doesn't do any validation.
+     *
+     * <p>This class implements the {@link SourceFile#fileName()} and {@link SourceFile#getStream()} methods.
+     * @param file The file to be wrapped
+     */
     public UncheckedFile(final File file) {
         this.file = file;
     }

@@ -45,6 +45,11 @@ public final class EOLValidatedFile extends SourceFile {
     private final SourceFile file;
     private final EndOfLine eol;
 
+    /**
+     * Wraps a {@link SourceFile} and checks if the files end of line characters match the editorconfig.
+     * @param file The file to be checked
+     * @param eol The expected end of line character
+     */
     public EOLValidatedFile(final SourceFile file, final EndOfLine eol) {
         this.file = file;
         this.eol = eol;

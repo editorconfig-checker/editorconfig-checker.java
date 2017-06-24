@@ -43,6 +43,10 @@ public final class TrailingWsValidatedFile extends SourceFile {
 
     private final SourceFile file;
 
+    /**
+     * Wraps a {@link SourceFile} to check it for trailing whitespaces.
+     * @param file The file to wrap
+     */
     public TrailingWsValidatedFile(final SourceFile file) {
         this.file = file;
     }

@@ -38,10 +38,25 @@ import org.editorconfig.checker.exception.WrappedValidationException;
  * @version $Id$
  */
 public abstract class SourceFile {
+
+    /**
+     * Returns an {@link InputStream} for the wrapped file.
+     * @return An InputStream to read from the file
+     * @throws IOException If an IO operation failed
+     */
     public abstract InputStream getStream() throws IOException;
 
+    /**
+     * Validates a file.
+     * @throws WrappedValidationException If the validation failed
+     * @throws IOException If some IO operation failed
+     */
     public abstract void validate() throws WrappedValidationException, IOException;
 
+    /**
+     * Returns the name of the wrapped file.
+     * @return The filename
+     */
     public abstract String fileName();
 
     static final Set<Character> LINE_SEPARATORS = new HashSet<>(

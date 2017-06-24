@@ -43,26 +43,52 @@ public final class WrappedValidationException extends Exception {
         super();
     }
 
+    /**
+     * Wraps a {@link ValidationException}.
+     * @param ve The exception to be wrapped
+     */
     public WrappedValidationException(final ValidationException ve) {
         this.exceptions.add(ve);
     }
 
+    /**
+     * Wraps another WrappedValidationException
+     * @param wve The exception to be wrapped
+     */
     public WrappedValidationException(final WrappedValidationException wve) {
         this.exceptions.addAll(wve.exceptions);
     }
 
+    /**
+     * Adds {@link ValidationException}s to the list of already wrapped exceptions.
+     * @param ve The exceptions to add
+     * @return {@code true} on success, else {@code false}
+     */
     public boolean addExceptions(final ValidationException... ve) {
         return this.exceptions.addAll(Arrays.asList(ve));
     }
 
+    /**
+     * Adds all exceptions, wrapped by a {@link WrappedValidationException} to the list of already wrapped exceptions.
+     * @param wve The exception to wrap
+     * @return {@code true} on succes, else {@code false}
+     */
     public boolean addExceptions(final WrappedValidationException wve) {
         return this.exceptions.addAll(wve.exceptions);
     }
 
+    /**
+     * Collects all wrapped exceptions into one error message string.
+     * @return The exception messages of all exceptions joined by {@code \n}
+     */
     public String getErrorMessage() {
         return this.exceptions.stream().map(e -> e.getMessage()).collect(Collectors.joining("\n"));
     }
 
+    /**
+     * Checks if this exception does wrap other exceptions
+     * @return {@code true} if other exceptions are wrapped, else {@code false}
+     */
     public boolean hasExceptions() {
         return !this.exceptions.isEmpty();
     }
