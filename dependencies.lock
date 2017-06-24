@@ -1,0 +1,145 @@
+{
+    "checkstyle": {
+        "com.puppycrawl.tools:checkstyle": {
+            "locked": "7.8.2"
+        }
+    },
+    "cobertura": {
+        "net.sourceforge.cobertura:cobertura": {
+            "locked": "2.1.1",
+            "requested": "2.1.1"
+        }
+    },
+    "compile": {
+        "args4j:args4j": {
+            "locked": "2.33",
+            "requested": "[2.0,3.0)"
+        },
+        "org.ini4j:ini4j": {
+            "locked": "0.5.4",
+            "requested": "[0.0.0,1.0.0)"
+        }
+    },
+    "compileClasspath": {
+        "args4j:args4j": {
+            "locked": "2.33",
+            "requested": "[2.0,3.0)"
+        },
+        "org.ini4j:ini4j": {
+            "locked": "0.5.4",
+            "requested": "[0.0.0,1.0.0)"
+        }
+    },
+    "default": {
+        "args4j:args4j": {
+            "locked": "2.33",
+            "requested": "[2.0,3.0)"
+        },
+        "org.ini4j:ini4j": {
+            "locked": "0.5.4",
+            "requested": "[0.0.0,1.0.0)"
+        }
+    },
+    "findbugs": {
+        "com.google.code.findbugs:findbugs": {
+            "locked": "3.0.1"
+        }
+    },
+    "pmd": {
+        "net.sourceforge.pmd:pmd-java": {
+            "locked": "5.7.0"
+        }
+    },
+    "runtime": {
+        "args4j:args4j": {
+            "locked": "2.33",
+            "requested": "[2.0,3.0)"
+        },
+        "org.ini4j:ini4j": {
+            "locked": "0.5.4",
+            "requested": "[0.0.0,1.0.0)"
+        }
+    },
+    "runtimeClasspath": {
+        "args4j:args4j": {
+            "locked": "2.33",
+            "requested": "[2.0,3.0)"
+        },
+        "org.ini4j:ini4j": {
+            "locked": "0.5.4",
+            "requested": "[0.0.0,1.0.0)"
+        }
+    },
+    "testCompile": {
+        "args4j:args4j": {
+            "locked": "2.33",
+            "requested": "[2.0,3.0)"
+        },
+        "junit:junit": {
+            "locked": "4.12",
+            "requested": "[4.0,5.0)"
+        },
+        "org.ini4j:ini4j": {
+            "locked": "0.5.4",
+            "requested": "[0.0.0,1.0.0)"
+        }
+    },
+    "testCompileClasspath": {
+        "args4j:args4j": {
+            "locked": "2.33",
+            "requested": "[2.0,3.0)"
+        },
+        "junit:junit": {
+            "locked": "4.12",
+            "requested": "[4.0,5.0)"
+        },
+        "org.ini4j:ini4j": {
+            "locked": "0.5.4",
+            "requested": "[0.0.0,1.0.0)"
+        }
+    },
+    "testRuntime": {
+        "args4j:args4j": {
+            "locked": "2.33",
+            "requested": "[2.0,3.0)"
+        },
+        "junit:junit": {
+            "locked": "4.12",
+            "requested": "[4.0,5.0)"
+        },
+        "log4j:log4j": {
+            "locked": "1.2.17",
+            "requested": "[1.0.0,2.0.0)"
+        },
+        "org.ini4j:ini4j": {
+            "locked": "0.5.4",
+            "requested": "[0.0.0,1.0.0)"
+        },
+        "org.slf4j:slf4j-log4j12": {
+            "locked": "1.8.0-alpha2",
+            "requested": "[1.0.0,2.0.0)"
+        }
+    },
+    "testRuntimeClasspath": {
+        "args4j:args4j": {
+            "locked": "2.33",
+            "requested": "[2.0,3.0)"
+        },
+        "junit:junit": {
+            "locked": "4.12",
+            "requested": "[4.0,5.0)"
+        },
+        "log4j:log4j": {
+            "locked": "1.2.17",
+            "requested": "[1.0.0,2.0.0)"
+        },
+        "org.ini4j:ini4j": {
+            "locked": "0.5.4",
+            "requested": "[0.0.0,1.0.0)"
+        },
+        "org.slf4j:slf4j-log4j12": {
+            "locked": "1.8.0-alpha2",
+            "requested": "[1.0.0,2.0.0)"
+        }
+    }
+}
