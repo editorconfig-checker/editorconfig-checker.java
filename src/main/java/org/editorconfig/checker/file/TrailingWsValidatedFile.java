@@ -26,9 +26,11 @@ package org.editorconfig.checker.file;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import org.editorconfig.checker.exception.TrailingWsValidationException;
-import org.editorconfig.checker.exception.ValidationException;
+import org.editorconfig.checker.exception.WrappedValidationException;
 import org.editorconfig.checker.util.IndentStyle;
 
 /**
@@ -51,12 +53,18 @@ public final class TrailingWsValidatedFile extends SourceFile {
     }
 
     @Override
-    public void validate() throws ValidationException, IOException {
-        this.file.validate();
+    public void validate() throws WrappedValidationException, IOException {
+        final WrappedValidationException ex = new WrappedValidationException();
+        try {
+            this.file.validate();
+        } catch (final WrappedValidationException wve) {
+            ex.addExceptions(wve);
+        }
         try (final Scanner scanner = new Scanner(
                     this.getStream(),
                     "UTF-8"
                     )) {
+            final List<Integer> lines = new ArrayList<>();
             int lineNo = 1;
             while (scanner.hasNextLine()) {
                 final String line = scanner.nextLine();
@@ -70,11 +78,17 @@ public final class TrailingWsValidatedFile extends SourceFile {
                                     whitespace.getIndent()
                                     )
                                 )) {
-                        throw new TrailingWsValidationException(this.fileName(), lineNo);
+                        lines.add(lineNo);
                     }
                 }
                 lineNo++;
             }
+            if (!lines.isEmpty()) {
+                ex.addExceptions(new TrailingWsValidationException(this.fileName(), lines));
+            }
+        }
+        if (ex.hasExceptions()) {
+            throw ex;
         }
     }
 

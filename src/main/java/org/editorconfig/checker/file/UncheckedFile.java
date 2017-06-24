@@ -28,7 +28,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import org.editorconfig.checker.exception.ValidationException;
+import org.editorconfig.checker.exception.WrappedValidationException;
 
 /**
  * Created by Valentin Brandl on 26.03.17.
@@ -52,7 +52,7 @@ public final class UncheckedFile extends SourceFile {
     }
 
     @Override
-    public void validate() throws ValidationException, IOException {
+    public void validate() throws WrappedValidationException, IOException {
     }
 
     @Override

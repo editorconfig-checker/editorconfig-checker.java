@@ -24,6 +24,9 @@
 
 package org.editorconfig.checker.exception;
 
+import java.util.Collection;
+import java.util.stream.Collectors;
+
 /**
  * Created by Valentin Brandl on 26.03.17.
  * @author Valentin Brandl
@@ -31,7 +34,16 @@ package org.editorconfig.checker.exception;
  * @version $Id$
  */
 public final class IndentValidationException extends ValidationException {
-    public IndentValidationException(final String fileName, final int line) {
-        super("Wrong indentation in " + fileName + " in line " + line);
+    /**
+     * Prepares an exception for invalid indents.
+     * @param fileName The file name
+     * @param lines The lines in which errors were found
+     */
+    public IndentValidationException(final String fileName, final Collection<Integer> lines) {
+        super("Wrong indentation in " + fileName + " in lines "
+            + lines.stream()
+                .map(i -> i.toString())
+                .collect(Collectors.joining(", "))
+        );
     }
 }

@@ -27,7 +27,7 @@ package org.editorconfig.checker.file;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
-import org.editorconfig.checker.exception.EOLValidationException;
+import org.editorconfig.checker.exception.WrappedValidationException;
 import org.editorconfig.checker.util.EndOfLine;
 import org.junit.Before;
 import org.junit.Test;
@@ -93,7 +93,7 @@ public final class EOLValidatedFileTest {
         );
         try {
             falseValidator.validate();
-        } catch (EOLValidationException eve) {
+        } catch (final WrappedValidationException eve) {
             return;
         }
         throw new Exception();
@@ -135,7 +135,7 @@ public final class EOLValidatedFileTest {
         );
         try {
             falseValidator.validate();
-        } catch (EOLValidationException eve) {
+        } catch (final WrappedValidationException eve) {
             return;
         }
         throw new Exception();
@@ -156,7 +156,7 @@ public final class EOLValidatedFileTest {
         boolean ex = false;
         try {
             validator.validate();
-        } catch (EOLValidationException eve) {
+        } catch (final WrappedValidationException eve) {
             ex = true;
         }
         assertTrue(ex);

@@ -25,7 +25,7 @@
 package org.editorconfig.checker.file;
 
 import java.io.File;
-import org.editorconfig.checker.exception.TrailingWsValidationException;
+import org.editorconfig.checker.exception.WrappedValidationException;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -43,7 +43,7 @@ public class TrailingWsValidatedFileTest {
 
     @Test
     public void validate() throws Exception {
-        exception.expect(TrailingWsValidationException.class);
+        exception.expect(WrappedValidationException.class);
         new TrailingWsValidatedFile(
                 new UncheckedFile(
                         new File(
@@ -57,7 +57,7 @@ public class TrailingWsValidatedFileTest {
 
     @Test
     public void validate2() throws Exception {
-        exception.expect(TrailingWsValidationException.class);
+        exception.expect(WrappedValidationException.class);
         new TrailingWsValidatedFile(
                 new UncheckedFile(
                         new File(

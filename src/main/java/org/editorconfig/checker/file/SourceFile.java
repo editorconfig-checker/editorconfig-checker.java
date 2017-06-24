@@ -29,7 +29,7 @@ import java.io.InputStream;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
-import org.editorconfig.checker.exception.ValidationException;
+import org.editorconfig.checker.exception.WrappedValidationException;
 
 /**
  * Created by Valentin Brandl on 26.03.17.
@@ -40,7 +40,7 @@ import org.editorconfig.checker.exception.ValidationException;
 public abstract class SourceFile {
     public abstract InputStream getStream() throws IOException;
 
-    public abstract void validate() throws ValidationException, IOException;
+    public abstract void validate() throws WrappedValidationException, IOException;
 
     public abstract String fileName();
 
